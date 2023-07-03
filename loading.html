@@ -45,6 +45,78 @@ h1 {
 	<canvas id="canvas" width="650" height="400"></canvas>
 
 	<script src="script.js"></script>
+	
+    </style>
+    <script>
+      function getRandomDuration() {
+        var min = 1;
+        var max = 300;
+        return Math.floor(Math.random() * (max - min + 1) + min) / 10000;
+      }
+
+      function changeAnimationDuration() {
+        var flashyElement = document.querySelector('.flashy');
+        var duration = getRandomDuration();
+        flashyElement.style.animationDuration = duration + 's';
+      }
+      setInterval(changeAnimationDuration, 7711);
+
+      function getRandomColor() {
+        var randomNum = Math.random();
+        if (randomNum < 0.7) {
+          return "black";
+        } else if (randomNum < 0.85) {
+          return "white";
+        } else {
+          return "purple";
+        }
+      }
+
+      function changeBackgroundColor() {
+        var bodyElement = document.querySelector('body');
+        var color = getRandomColor();
+        bodyElement.style.backgroundColor = color;
+      }
+      setInterval(changeBackgroundColor, 1);
+      
+      
+      function moveSection(section) {
+  var sectionElement = document.querySelector(section);
+  var containerWidth = window.innerWidth;
+  var containerHeight = window.innerHeight;
+  var sectionWidth = sectionElement.offsetWidth;
+  var sectionHeight = sectionElement.offsetHeight;
+
+  var positionX = Math.random() * (containerWidth - sectionWidth);
+  var positionY = Math.random() * (containerHeight - sectionHeight);
+
+  var speedX = (Math.random() - 0.5) * 20;
+  var speedY = (Math.random() - 0.5) * 10;
+
+  function move() {
+    positionX += speedX;
+    positionY += speedY;
+
+    if (positionX <= 0 || positionX >= containerWidth - sectionWidth) {
+      speedX *= -1;
+    }
+
+    if (positionY <= 0 || positionY >= containerHeight - sectionHeight) {
+      speedY *= -1;
+    }
+
+    sectionElement.style.transform = 'translate(' + positionX + 'px, ' + positionY + 'px)';
+
+    requestAnimationFrame(move);
+  }
+
+  move();
+}
+
+moveSection('section:nth-of-type(1)');
+moveSection('section:nth-of-type(2)');
+    </script>
+	
 </body>
 
 </html><script type="text/javascript">var parent = document.getElementById("parent");
