@@ -106,22 +106,24 @@ h3:hover{
   left: 10px;
 }
 
-.gallery img {
+.gallery > img {
   width: 100px; /* Adjust the size as needed */
   height: 100px;
   margin-right: 10px; /* Add some spacing between images */
    transition: transform 0.3s ease;
      animation: rotateImage 4s linear infinite; /* Add continuous rotation animation */
+	 object-fit: cover;
+  cursor: pointer;
 }
 
 
 
-.gallery img:hover {
-  transform: scale(7) ; /* Enlarge the image on hover */
+.gallery > img:hover {
+  transform: scale(7); /* Enlarge the image on hover */
 
 }
 	  
 @keyframes rotateImage {
   0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(360deg) scale(6); }
+  100% { transform: rotateY(360deg); }
 }
