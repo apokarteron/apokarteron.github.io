@@ -170,6 +170,11 @@ const spawningInterval = setInterval(spawnCube, spawnInterval);
         var bodyElement = document.querySelector('body');
         var color = getRandomColor();
         bodyElement.style.backgroundColor = color;
+        if (color == "white") {  bodyElement.style.color = "black";
+          
+          
+        } else { bodyElement.style.color = "white";
+               }
       }
       setInterval(changeBackgroundColor, 10000);
 
