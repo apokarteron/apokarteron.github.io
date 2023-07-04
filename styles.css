@@ -123,5 +123,5 @@ h3:hover{
 	  
 @keyframes rotateImage {
   0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(360deg); }
+  100% { transform: rotateY(360deg); scale(6) }
 }
