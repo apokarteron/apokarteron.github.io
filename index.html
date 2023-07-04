@@ -98,7 +98,7 @@ h2{
 
   <!-- Other content -->
   <h1 class="flashy">APOKARTERON</h1>
-  <p>The flash is rotting ...</p>
+  <p><centre>The flash is rotting ...</centre></p>
   
   	<section>
 		<h2>Visualize</h2>
@@ -114,7 +114,7 @@ h2{
     
     let cubesSpawned = 0;
 const totalCubesToSpawn = 100; // Set the desired number of cubes to spawn
-const spawnInterval = 1000; // 5 seconds
+const spawnInterval = 1000; // 1 second
 
 function spawnCube() {
   const background = document.getElementById("background");
@@ -136,11 +136,11 @@ function spawnCube() {
   }
   
     cube.addEventListener('mouseover', function() {
-    cube.style.animationDuration = '0.4s'; // Change the animation duration on mouseover
+    cube.style.animationDuration = '6s'; // Change the animation duration on mouseover
     });
 
     cube.addEventListener('mouseout', function() {
-    cube.style.animationDuration = '10s'; // Restore the original animation duration on mouseout
+    cube.style.animationDuration = '0.2s'; // Restore the original animation duration on mouseout
     });
 
   background.appendChild(cube);
