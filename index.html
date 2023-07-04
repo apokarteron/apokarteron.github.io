@@ -1,20 +1,80 @@
-<!doctype html><html><head><style type="text/css">@font-face {
-  font-family: 'FuturisticFont';
-  src: url('path/to/futuristic-font.ttf') format('truetype');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Randomly Spawning Cubes</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      perspective: 800px;
+    }
+
+    .cube {
+      width: 100px;
+      height: 100px;
+      transform-style: preserve-3d;
+      animation: rotateCube 6s linear infinite;
+      position: fixed;
+    }
+
+    .face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid white;
+      box-sizing: border-box;
+      opacity: 0.7;
+    }
+
+    .front { transform: translateZ(50px); }
+    .back { transform: translateZ(-50px); }
+    .left { transform: rotateY(90deg) translateZ(50px); }
+    .right { transform: rotateY(-90deg) translateZ(50px); }
+    .top { transform: rotateX(90deg) translateZ(50px); }
+    .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateX(0) rotateY(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+    
+    @font-face {
+  font-family: 'StretchyFont';
+  src: url('path/to/stretchy-variable-font.woff2') format('woff2-variations');
 }
 
 body {
   background-color: black;
   color: white;
-  font-family: 'FuturisticFont', sans-serif;
+  font-family: 'Recursive', sans-serif;
 }
 
 h1 {
   font-size: 4em;
+  text-shadow: 20px 20px 40px #ffffff);
 }
 
 .flashy {
-  animation: flashyAnimation 0.1s infinite;
+  animation: flashyAnimation 0.2s infinite;
+  text-shadow: 5px 5px #ffffff;
+ 
+}
+
+h1:hover {
+  transform: matrix(2, -1, 1, 1, 200, 80);
+  
+ 
 }
 
 @keyframes flashyAnimation {
@@ -22,18 +82,25 @@ h1 {
   50% { color: #ff0000; } /* Red */
   100% { color: #0000ff; } /* Blue */
 }
-</style></head><body><!DOCTYPE html>
-<html>
 
-<head>
-	<title>Apokarteron</title>
-	<link rel="stylesheet" href="styles.css">
+h2{
+   
+    width: 120px;
+  box-shadow: 4px 4px red;
+  background-color: pink;
+}
+
+    
+  </style>
 </head>
-
 <body>
-	<h1 class="flashy">Apokarteron</h1>
+  <div class="background" id="background"></div>
 
-	<section>
+  <!-- Other content -->
+  <h1 class="flashy">APOKARTERON</h1>
+  <p>The flash is rotting ...</p>
+  
+  	<section>
 		<h2>Visualize</h2>
 		<p>Maybe one day you will be able to see...</p>
 	</section>
@@ -42,33 +109,60 @@ h1 {
 		<h2>About</h2>
 		<p>Prepare for the post-human experience!</p>
 	</section>
-	<canvas id="canvas" width="650" height="400"></canvas>
 
-	<script src="script.js"></script>
-	
-    </style>
-    <script>
-      function getRandomDuration() {
-        var min = 1;
-        var max = 300;
-        return Math.floor(Math.random() * (max - min + 1) + min) / 10000;
-      }
+  <script>
+    
+    let cubesSpawned = 0;
+const totalCubesToSpawn = 100; // Set the desired number of cubes to spawn
+const spawnInterval = 1000; // 5 seconds
 
-      function changeAnimationDuration() {
-        var flashyElement = document.querySelector('.flashy');
-        var duration = getRandomDuration();
-        flashyElement.style.animationDuration = duration + 's';
-      }
-      setInterval(changeAnimationDuration, 7711);
+function spawnCube() {
+  const background = document.getElementById("background");
+  const cube = document.createElement("div");
+  cube.className = "cube";
 
-      function getRandomColor() {
+  const positionX = Math.random() * (window.innerWidth - 100); // Random X position
+  const positionY = Math.random() * (window.innerHeight - 100); // Random Y position
+
+  cube.style.left = `${positionX}px`; // Set X position
+  cube.style.top = `${positionY}px`; // Set Y position
+
+  // Create cube faces
+  const faces = ["front", "back", "left", "right", "top", "bottom"];
+  for (let i = 0; i < faces.length; i++) {
+    const face = document.createElement("div");
+    face.className = `face ${faces[i]}`;
+    cube.appendChild(face);
+  }
+  
+    cube.addEventListener('mouseover', function() {
+    cube.style.animationDuration = '0.4s'; // Change the animation duration on mouseover
+    });
+
+    cube.addEventListener('mouseout', function() {
+    cube.style.animationDuration = '10s'; // Restore the original animation duration on mouseout
+    });
+
+  background.appendChild(cube);
+  cubesSpawned++;
+
+  if (cubesSpawned >= totalCubesToSpawn) {
+    clearInterval(spawningInterval);
+  }
+}
+
+// Spawn cubes at regular intervals
+const spawningInterval = setInterval(spawnCube, spawnInterval);
+
+    
+ function getRandomColor() {
         var randomNum = Math.random();
         if (randomNum < 0.7) {
           return "black";
         } else if (randomNum < 0.85) {
           return "white";
         } else {
-          return "purple";
+          return "red";
         }
       }
 
@@ -77,9 +171,9 @@ h1 {
         var color = getRandomColor();
         bodyElement.style.backgroundColor = color;
       }
-      setInterval(changeBackgroundColor, 1);
-      
-      
+      setInterval(changeBackgroundColor, 10000);
+
+
       function moveSection(section) {
   var sectionElement = document.querySelector(section);
   var containerWidth = window.innerWidth;
@@ -90,7 +184,7 @@ h1 {
   var positionX = Math.random() * (containerWidth - sectionWidth);
   var positionY = Math.random() * (containerHeight - sectionHeight);
 
-  var speedX = (Math.random() - 0.5) * 20;
+  var speedX = (Math.random() - 0.5) * 10;
   var speedY = (Math.random() - 0.5) * 10;
 
   function move() {
@@ -115,256 +209,9 @@ h1 {
 
 moveSection('section:nth-of-type(1)');
 moveSection('section:nth-of-type(2)');
-    </script>
-	
+
+
+
+  </script>
 </body>
-
-</html><script type="text/javascript">var parent = document.getElementById("parent");
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
-
-var fill = false;
-
-var angleX = 2 * Math.PI / 360;
-var angleY = 2 * Math.PI / 720;
-var angleZ = 2 * Math.PI / 1480;
-
-var rotX = true;
-var rotY = true;
-var rotZ = false;
-
-var cube = createCube(0, 0, 4, 1.5);
-
-// position: x: 0, y: 0, z: 6
-// size 2 (length of one side)
-function createCube(x, y, z, size) {
-  var start = { "x": x, "y": y, "z": z, "size": size };
-
-  var bl = { x: x - size / 2, y: y - size / 2, z: z - size / 2 }
-  var br = { x: x + size / 2, y: y - size / 2, z: z - size / 2 }
-  var tl = { x: x - size / 2, y: y + size / 2, z: z - size / 2 }
-  var tr = { x: x + size / 2, y: y + size / 2, z: z - size / 2 }
-
-  var blz = { x: x - size / 2, y: y - size / 2, z: z + size / 2 }
-  var brz = { x: x + size / 2, y: y - size / 2, z: z + size / 2 }
-  var tlz = { x: x - size / 2, y: y + size / 2, z: z + size / 2 }
-  var trz = { x: x + size / 2, y: y + size / 2, z: z + size / 2 }
-
-  return {
-    "bl": bl,
-    "br": br,
-    "tl": tl,
-    "tr": tr,
-    "blz": blz,
-    "brz": brz,
-    "tlz": tlz,
-    "trz": trz,
-    "start": start
-  };
-}
-
-function worldToScreen(p, offset) {
-  let factor = canvas.width;
-  let screen = {
-    x: p.x / p.z * factor + (canvas.width / 2),
-    y: p.y / p.z * factor + (canvas.height / 2)
-  };
-
-  return screen
-}
-
-function rotateCubeZ(cube) {
-  let bl = rotateZ(cube.bl, cube.start);
-  let br = rotateZ(cube.br, cube.start);
-  let tl = rotateZ(cube.tl, cube.start);
-  let tr = rotateZ(cube.tr, cube.start);
-  let blz = rotateZ(cube.blz, cube.start);
-  let brz = rotateZ(cube.brz, cube.start);
-  let tlz = rotateZ(cube.tlz, cube.start);
-  let trz = rotateZ(cube.trz, cube.start);
-  return {
-    "bl": bl,
-    "br": br,
-    "tl": tl,
-    "tr": tr,
-    "blz": blz,
-    "brz": brz,
-    "tlz": tlz,
-    "trz": trz,
-    "start": cube.start
-  };
-}
-
-function rotateCubeX(cube) {
-  let bl = rotateX(cube.bl, cube.start);
-  let br = rotateX(cube.br, cube.start);
-  let tl = rotateX(cube.tl, cube.start);
-  let tr = rotateX(cube.tr, cube.start);
-  let blz = rotateX(cube.blz, cube.start);
-  let brz = rotateX(cube.brz, cube.start);
-  let tlz = rotateX(cube.tlz, cube.start);
-  let trz = rotateX(cube.trz, cube.start);
-  return {
-    "bl": bl,
-    "br": br,
-    "tl": tl,
-    "tr": tr,
-    "blz": blz,
-    "brz": brz,
-    "tlz": tlz,
-    "trz": trz,
-    "start": cube.start
-  };
-}
-
-function rotateCubeY(cube) {
-  let bl = rotateY(cube.bl, cube.start);
-  let br = rotateY(cube.br, cube.start);
-  let tl = rotateY(cube.tl, cube.start);
-  let tr = rotateY(cube.tr, cube.start);
-  let blz = rotateY(cube.blz, cube.start);
-  let brz = rotateY(cube.brz, cube.start);
-  let tlz = rotateY(cube.tlz, cube.start);
-  let trz = rotateY(cube.trz, cube.start);
-  return {
-    "bl": bl,
-    "br": br,
-    "tl": tl,
-    "tr": tr,
-    "blz": blz,
-    "brz": brz,
-    "tlz": tlz,
-    "trz": trz,
-    "start": cube.start
-  };
-}
-
-function translateY(cube, value) {
-
-  var bl = cube.bl;
-  var br = cube.br;
-  var tl = cube.tl;
-  var tr = cube.tr;
-  var blz = cube.blz;
-  var brz = cube.brz;
-  var tlz = cube.tlz;
-  var trz = cube.trz;
-  var start = cube.start;
-
-  bl.y = cube.bl.y + value;
-  br.y = cube.br.y + value;
-  tl.y = cube.tl.y + value;
-  tr.y = cube.tr.y + value;
-  blz.y = cube.blz.y + value;
-  brz.y = cube.brz.y + value;
-  tlz.y = cube.tlz.y + value;
-  trz.y = cube.trz.y + value;
-  start.y = cube.start.y - value;
-
-  return {
-    "bl": bl,
-    "br": br,
-    "tl": tl,
-    "tr": tr,
-    "blz": blz,
-    "brz": brz,
-    "tlz": tlz,
-    "trz": trz,
-    "start": cube.start
-  };
-}
-
-function rotateZ(p, start) {
-  let x = p.x - start.x;
-  let y = p.y - start.y;
-  return { x: x * Math.cos(angleZ) - y * Math.sin(angleZ) + start.x, y: y * Math.cos(angleZ) + x * Math.sin(angleZ) + start.y, z: p.z }
-}
-
-function rotateX(p, start) {
-  let z = p.z - start.z;
-  let y = p.y - start.y;
-
-  let yy = y * Math.cos(angleX) - z * Math.sin(angleX) + start.y
-  let zz = (y * Math.sin(angleX) + z * Math.cos(angleX)) + start.z
-  return { x: p.x, y: yy, z: zz }
-}
-
-function rotateY(p, start) {
-  let z = p.z - start.z;
-  let x = p.x - start.x;
-
-  let xx = x * Math.cos(angleY) + z * Math.sin(angleY) + start.x
-  let zz = (-x * Math.sin(angleY) + z * Math.cos(angleY)) + start.z
-  return { x: xx, y: p.y, z: zz }
-}
-
-function drawLine(p0, p1) {
-  context.beginPath();
-  context.moveTo(p0.x, p0.y);
-  context.lineTo(p1.x, p1.y);
-  context.lineWidth = "2"
-  context.strokeStyle = "#222";
-  context.stroke();
-}
-
-function update() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Cube
-  if (rotZ === true) {
-    cube = rotateCubeZ(cube);
-  }
-
-  if (rotY === true) {
-    cube = rotateCubeY(cube);
-  }
-
-  if (rotX === true) {
-    cube = rotateCubeX(cube);
-  }
-
-  drawCube(cube, 0);
-  requestAnimationFrame(update);
-}
-
-function drawCube(cube, offset) {
-  let blr = worldToScreen(cube.bl, offset)
-  let brr = worldToScreen(cube.br, offset)
-  let tlr = worldToScreen(cube.tl, offset)
-  let trr = worldToScreen(cube.tr, offset)
-  let blrz = worldToScreen(cube.blz, offset)
-  let brrz = worldToScreen(cube.brz, offset)
-  let tlrz = worldToScreen(cube.tlz, offset)
-  let trrz = worldToScreen(cube.trz, offset)
-
-  let front = { p1: blr, p2: brr, p3: trr, p4: tlr, color: "#bb2222", };
-  let back = { p1: blrz, p2: brrz, p3: trrz, p4: tlrz, color: "#22bb22", };
-  let left = { p1: blr, p2: tlr, p3: tlrz, p4: blrz, color: "#2222bb" };
-  let right = { p1: brr, p2: trr, p3: trrz, p4: brrz, color: "#22bbbb" };
-  let top = { p1: tlr, p2: trr, p3: trrz, p4: tlrz, color: "#bb22bb" };
-  let bottom = { p1: blr, p2: brr, p3: brrz, p4: blrz, color: "#bbbb22" };
-
-  var faces = [front, back, left, right, top, bottom];
-  faces.forEach(drawFace);
-}
-
-function drawFace(face) {
-
-  let p1 = face.p1;
-  let p2 = face.p2;
-  let p3 = face.p3;
-  let p4 = face.p4;
-
-  let ctx = context;
-
-  ctx.beginPath();
-  ctx.moveTo(p1.x, p1.y);
-  ctx.lineTo(p2.x, p2.y);
-  ctx.lineTo(p3.x, p3.y);
-  ctx.lineTo(p4.x, p4.y);
-  ctx.closePath();
-  ctx.strokeStyle = "white";
-  ctx.stroke();
-}
-
-requestAnimationFrame(update)</script></body><html>
+</html>
