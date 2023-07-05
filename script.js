@@ -22,11 +22,11 @@ function spawnCube() {
   }
   
   cube.addEventListener('mouseover', function() {
-    cube.style.animationDuration = '6s'; // Change the animation duration on mouseover
+    cube.style.animationDuration = '0.2'; // Change the animation duration on mouseover
   });
 
   cube.addEventListener('mouseout', function() {
-    cube.style.animationDuration = '0.2s'; // Restore the original animation duration on mouseout
+    cube.style.animationDuration = '8s'; // Restore the original animation duration on mouseout
   });
 
   background.appendChild(cube);
