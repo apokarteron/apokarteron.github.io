@@ -3,6 +3,14 @@ body {
   margin: 0;
   overflow: hidden;
   padding: 0;
+  
+    background-color: black;
+  color: white;
+  font-family: 'Recursive', sans-serif;
+      display: flex;
+  align-items: center;
+
+  flex-direction:column;
 
 }
 
@@ -10,8 +18,8 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
+  width: 1200px;
+  height: 1200px;
   z-index: -1;
   perspective: 800px;
 }
@@ -20,7 +28,7 @@ body {
   width: 100px;
   height: 100px;
   transform-style: preserve-3d;
-  animation: rotateCube 6s linear infinite;
+  animation: rotateCube 8s linear infinite;
   position: fixed;
 }
 
@@ -50,15 +58,7 @@ body {
   src: url('path/to/stretchy-variable-font.woff2') format('woff2-variations');
 }
 
-body {
-  background-color: black;
-  color: white;
-  font-family: 'Recursive', sans-serif;
-      display: flex;
-  align-items: center;
 
-  flex-direction:column;
-}
 
 h1 {
   font-size: 4em;
@@ -106,12 +106,11 @@ h2:hover {
 
 
 h3{
-  position: fixed;
-  bottom: 10%;
-    right: 20%;
-  width: 15%;
+
+ 
+  width: 152px;
   background-color: lightblue;
-  box-shadow: 73px 44px 69px 
+  box-shadow: 7px 4px 69px 
 }
 
 h3:hover{
