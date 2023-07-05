@@ -65,46 +65,39 @@ function changeBackgroundColor() {
 
 setInterval(changeBackgroundColor, 10000);
 
-//dvd animation stolen from jj ferman on yt
-  
-let dvd = document.getElementById('dvd');
-let interval_id;
-let x_incr = 1;
-let y_incr = 1;
 
-function init() {
-  update_color();
-  dvd.style.position = 'absolute';
-  setInterval(frame, 5);
-}
+function moveSection(section) {
+  var sectionElement = document.querySelector(section);
+  var containerWidth = window.innerWidth;
+  var containerHeight = window.innerHeight;
+  var sectionWidth = sectionElement.offsetWidth;
+  var sectionHeight = sectionElement.offsetHeight;
 
-function update_color() {
-  let color = Math.round((Math.random() * 100));
-  dvd.style.backgroundColor = `hsl(${color},100%,50%)`;
-}
+  var positionX = Math.random() * (containerWidth - sectionWidth);
+  var positionY = Math.random() * (containerHeight - sectionHeight);
 
-function handle_collision() {
-  let dvd_height = dvd.offsetHeight;
-  let dvd_width = dvd.offsetWidth;
-  let left = dvd.offsetLeft;
-  let top = dvd.offsetTop;
-  let win_height = window.innerHeight;
-  let win_width = window.innerWidth;
+  var speedX = (Math.random() - 0.5) * 10;
+  var speedY = (Math.random() - 0.5) * 10;
 
-  if (left <= 0 || left + dvd_width >= win_width) {
-    x_incr = ~x_incr + 1;
-    update_color();
+  function move() {
+    positionX += speedX;
+    positionY += speedY;
+
+    if (positionX <= 0 || positionX >= containerWidth - sectionWidth) {
+      speedX *= -1;
+    }
+
+    if (positionY <= 0 || positionY >= containerHeight - sectionHeight) {
+      speedY *= -1;
+    }
+
+    sectionElement.style.transform = 'translate(' + positionX + 'px, ' + positionY + 'px)';
+
+    requestAnimationFrame(move);
   }
-  if (top <= 0 || top + dvd_height >= win_height) {
-    y_incr = ~y_incr + 1;
-    update_color();
-  }
+
+  move();
 }
 
-function frame() {
-  handle_collision();
-  dvd.style.top = dvd.offsetTop + y_incr;
-  dvd.style.left = dvd.offsetLeft + x_incr;
-}
-
-init();
+moveSection('section:nth-of-type(1)');
+moveSection('section:nth-of-type(2)');
