@@ -20,8 +20,9 @@ body {
   right: 0;
   width: 1200px;
   height: 1200px;
-  z-index: -1;
+  z-index: 0;
   perspective: 800px;
+  margin: 0;
 }
 
 .cube {
@@ -31,6 +32,10 @@ body {
   animation: rotateCube 8s linear infinite;
   position: fixed;
 }
+.cube:hover{
+  animation-duration: 0.4s;
+  
+}
 
 .face {
   position: absolute;
@@ -39,6 +44,11 @@ body {
   border: 2px solid green;
   box-sizing: border-box;
   opacity: 0.7;
+
+}
+
+.face:hover{
+  border: 50px solid #00cccc;
 }
 
 .front { transform: translateZ(50px); }
@@ -63,6 +73,7 @@ body {
 h1 {
   font-size: 4em;
   text-shadow: 20px 20px 40px #ffffff;
+  margin: 0;
 }
 
 .flashy {
@@ -81,6 +92,7 @@ h1:hover {
 }
 
 h2 {
+  margin: 0;
   width: 120px;
   box-shadow: 4px 4px red;
   background-color: pink;
@@ -107,7 +119,7 @@ h2:hover {
 
 h3{
 
- 
+  margin: 0;
   width: 152px;
   background-color: lightblue;
   box-shadow: 7px 4px 69px 
