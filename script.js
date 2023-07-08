@@ -1,5 +1,5 @@
 let cubesSpawned = 0;
-const totalCubesToSpawn = 100; // Set the desired number of cubes to spawn
+const totalCubesToSpawn = 180; // Set the desired number of cubes to spawn
 const spawnInterval = 1000; // 1 second
 
 function spawnCube() {
@@ -12,6 +12,7 @@ function spawnCube() {
 
   cube.style.left = `${positionX}px`; // Set X position
   cube.style.top = `${positionY}px`; // Set Y position
+  
 
   // Create cube faces
   const faces = ["front", "back", "left", "right", "top", "bottom"];
@@ -21,13 +22,7 @@ function spawnCube() {
     cube.appendChild(face);
   }
   
-  cube.addEventListener('mouseover', function() {
-    cube.style.animationDuration = '0.2'; // Change the animation duration on mouseover
-  });
 
-  cube.addEventListener('mouseout', function() {
-    cube.style.animationDuration = '8s'; // Restore the original animation duration on mouseout
-  });
 
   background.appendChild(cube);
   cubesSpawned++;
@@ -101,3 +96,4 @@ function moveSection(section) {
 
 moveSection('section:nth-of-type(1)');
 moveSection('section:nth-of-type(2)');
+
