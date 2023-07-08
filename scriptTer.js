@@ -94,7 +94,9 @@ help = [
   '<span class="command">email</span>          I do not read email, but u can try',
   '<span class="command">clear</span>          Clear terminal',
   '<span class="command">banner</span>         Display the header',
-  '<span class="command">moon</span>           Current footage of the moon',
+  '<span class="command">moon</span>           Offer you body to the moon',
+  '<span class="command">sun</span>           Praise the sun',
+
   "<br>",
 ];
 
@@ -126,6 +128,60 @@ banner = [
   '<span class="color2">Welcum to the web, where the spiderz hide!</span>',
   "<span class=\"color2\">If you are so stupid... beseech</span> <span class=\"command\">'help'</span><span class=\"color2\">!</span>"
 ];
+
+moon = [
+  "      *                                                            *",
+  "                              aaaaaaaaaaaaaaaa               *",
+  "                          aaaaaaaaaaaaaaaaaaaaaaaa",
+  "                       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "                     aaaaaaaaaaaaaaaaa           aaaaaa",
+  "                   aaaaaaaaaaaaaaaa                  aaaa",
+  "                  aaaaaaaaaaaaa aa                      aa",
+  " *               aaaaaaaa      aa                         a",
+  "                 aaaaaaa aa aaaa",
+  "           *    aaaaaaaaa     aaa",
+  "                aaaaaaaaaaa aaaaaaa                               *",
+  "                aaaaaaa    aaaaaaaaaa",
+  "                aaaaaa a aaaaaa aaaaaa",
+  "                 aaaaaaa  aaaaaaa",
+  "                 aaaaaaaa                                 a",
+  "                  aaaaaaaaaa                            aa",
+  "                   aaaaaaaaaaaaaaaa                  aaaa",
+  "                     aaaaaaaaaaaaaaaaa           aaaaaa        *",
+  "       *               aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "                          aaaaaaaaaaaaaaaaaaaaaaaa",
+  "                       *      aaaaaaaaaaaaaaaa"
+];
+
+sun = [
+  "                        |",
+  "                    .   |",
+  "                        |",
+  "          \\    *        |     *    .  /",
+  "            \\        *  |  .        /",
+  "         .    \\     ___---___     /    .",
+  "                \\.--         --./",
+  "     ~-_    *  ./               \\.   *   _-~",
+  "        ~-_   /    ^         ^    \\   _-~     *",
+  "   *       ~-/    ___       ___    \\-~",
+  "     .      |    (_O_)     (_O_)    |      .",
+  "         * |                         | *",
+  "-----------|                         |-----------",
+  "  .        |    <               >    |        .",
+  "        *   |    \\             /    | *",
+  "           _-\\    `.         .'    /-_    *",
+  "     .  _-~ . \\     `-.___.-'     /   ~-_",
+  "    _-~       `\\               /'*      ~-_",
+  "    ~           /`--___   ___--'\\           ~",
+  "           *  /        ---     .  \\   jgs  .",
+  "            /     *     |           \\",
+  "          /             |   *         \\",
+  "                     .  |        .",
+  "                        |",
+  "                        |"
+];
+
+
 
 var before = document.getElementById("before");
 var liner = document.getElementById("liner");
@@ -243,7 +299,7 @@ function commander(cmd) {
       addLine("<br>", "command", 80 * commands.length + 50);
       break;
     case "email":
-      addLine('Opening mailto:<a href="mailto:disperazioneee@proton.me"></a>...', "color2", 80);
+      addLine('Opening mailto:<a href="mailto:disperazioneee@proton.me"> mail</a>...', "color2", 80);
       newTab(email);
       break;
     case "clear":
@@ -270,7 +326,14 @@ function commander(cmd) {
       break;
 
     case "moon":
-      
+       mydiv.style.color = "#cccc00";
+       mydiv.style.background = "#333333";
+       loopLines(moon, "", 200);
+      break;
+      case "sun":
+       mydiv.style.color = "#333333";
+       mydiv.style.background = "#cccc00";
+       loopLines(sun, "", 200);
       break;
   }
 }
