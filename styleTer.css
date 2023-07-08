@@ -3,32 +3,36 @@
   z-index: 9;
  
   text-align: left;
-  border: 1px solid #d3d3d3;
+  border: 6px solid #d3d3d3;
     margin: 0;
-  padding: 15px 20px;
-  min-height: 99%;
-  width: 50%;
+  padding: 5px 15px;
+ 
+  width: 1040px;
+  height: 703px;
   min-width: 550px;
-  color: #cccc00;
-  background: #333333;
+  color: #333333;
+  background: #cccc00;
   font-family:  Courier, monospace;
-  overflow-x: hidden;
+  overflow: auto;
   resize: both;
+  scroll-behavior: smooth;
 }
 
 #mydivheader {
+  position: sticky;
   padding: 10px;
   cursor: move;
   z-index: 10;
   background: #ccbbcc;
   color: #333333;
- 
+  
 }
 
 
 textarea {
   left: -1000px;
   position: absolute;
+  
 }
 b {
   font-weight: bold;
@@ -140,7 +144,7 @@ a:focus {
 }
 
 .iconaT{
-  background-color: #cc00cc;
+  background-color: #cccc00;
   margin-top: 20%;
   margin-left: 10%;
   transform: scale(2);
@@ -149,15 +153,16 @@ a:focus {
   
 }
 .iconaT:hover{
-  transform: scale(5);
+  transform: scale(7);
 }
 
 @keyframes neon {
-  from {box-shadow: 0 0 15px #cc00cc;}
-  to {box-shadow: 0 0 100px #cc00cc;}
+  from {box-shadow: 0 0 15px #cccc00;}
+  to {box-shadow: 0 0 100px #cccc00;
+      transform: scale(3);}
 }
 
 
 .closeB{
-  margin-left: auto;
+  margin-right: auto;
 }
