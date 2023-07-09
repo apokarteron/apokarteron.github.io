@@ -277,7 +277,7 @@ function commander(cmd) {
     case "sudo":
       addLine("Mmmh there's nothing as congenial as fresh sweat xD", "color2", 80);
       setTimeout(function() {
-        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+        window.open('https://www.youtube.com/watch?v=SZfzC0ad4oc&list=LL&index=297&t=27s');
       }, 1000); 
       break;
     case "social":
