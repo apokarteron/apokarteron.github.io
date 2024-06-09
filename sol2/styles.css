@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2e7d32;
+}
+
+#container {
+    display: flex;
+}
+
+#game-area {
+    margin-right: 20px;
+}
+
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    height: 600px;
+    border: 2px solid #fff;
+    background-color: #388e3c;
+    position: relative;
+}
+
+.card {
+    width: 50px;
+    height: 80px;
+    background-color: white;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 80px;
+    font-size: 16px;
+    position: absolute;
+    cursor: grab;
+}
+
+
+
+
+
+
+.card.highlight {
+    mix-blend-mode: difference;
+}
+
+
+#draw-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#draw-button:hover {
+    background-color: #f0f0f0;
+}
+
+#charts {
+    display: flex;
+    flex-direction: column;
+}
+
+#charts canvas {
+    margin-bottom: 20px;
+}
