@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1E2D24;
+}
+
+#container {
+    display: flex;
+    flex-flow: row;
+    align-items:stretch;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#game-area {
+    display: flex;
+    width: 1200px;
+    height: 800px;
+    margin-inline: auto;
+    flex-direction: column;
+   
+    
+}
+
+#card-container {
+    display: grid;
+    /*flex-wrap: wrap;
+    align-items: top; */
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-flow: row;
+    align-items: center;
+    width: 1200px;
+    height: 600px;
+    border: 2px solid #fff;
+    background-color: #388e3c;
+    position: relative;
+}
+    
+.card {
+    
+    width: 100px;
+    height: 160px;
+    background-color: white;
+    border: 2px solid #000;
+    margin: 2px 2px;
+    text-align: left;
+    line-height: 80px;
+    cursor: grab;
+    font-family: 'Jacquard 12', system-ui;
+    font-size: 60px;
+    font-style: normal;
+
+}
+
+
+
+
+
+
+.card.highlight {
+    mix-blend-mode: difference;
+}
+
+
+#draw-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+
+
+#draw-button:hover {
+    background-color: #f0f0f0;
+}
+
+#charts {
+    display: flex;
+    flex-direction: column;
+}
+
+#charts canvas {
+    margin-bottom: 20px;
+}
+
+
+
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+    }
+
+    #container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #card-container {
+        height: auto;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+    }
+
+    .card {
+        width: 40px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 14px;
+    }
+
+    #draw-button {
+        width: 80%;
+        padding: 10px 0;
+    }
+
+    #charts {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    #charts canvas {
+        width: 100%;
+        max-width: 300px;
+    }
+}
